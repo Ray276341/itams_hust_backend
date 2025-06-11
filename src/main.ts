@@ -1,13 +1,4 @@
-import * as crypto from 'crypto';
-
-// Monkey-patch for broken internal schedule UUID usage
-if (!crypto.randomUUID) {
-  (crypto as any).randomUUID = () => {
-    return [...Array(36)]
-      .map((_, i) => (i === 14 ? '4' : i === 19 ? '89ab' : '0123456789abcdef')[Math.floor(Math.random() * 16)])
-      .join('');
-  };
-}
+import './preload';
 
 import * as dotenv from 'dotenv';
 dotenv.config();
