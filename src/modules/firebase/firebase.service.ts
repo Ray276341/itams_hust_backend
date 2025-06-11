@@ -13,10 +13,11 @@ export class FirebaseService {
 
   bucket: Bucket;
   constructor() {
-    const serviceAccount = JSON.parse(process.env.FIREBASE_CREDENTIALS_JSON);
-    
+    const raw = JSON.parse(process.env.FIREBASE_CREDENTIALS_JSON);
+    raw.private_key = raw.private_key.replace(/\\n/g, '\n');
+
     const app = firebase.initializeApp({
-      credential: firebase.credential.cert(serviceAccount),
+      credential: firebase.credential.cert(raw),
       storageBucket: process.env.FIREBASE_STORAGEBUCKET,
     });
     this.bucket = getStorage(app).bucket();
