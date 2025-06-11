@@ -1,10 +1,3 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
-
-import { NestFactory } from '@nestjs/core';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { AppModule } from './app.module';
-
 import * as crypto from 'crypto';
 
 // Monkey-patch for broken internal schedule UUID usage
@@ -15,6 +8,15 @@ if (!crypto.randomUUID) {
       .join('');
   };
 }
+
+import * as dotenv from 'dotenv';
+dotenv.config();
+
+import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { AppModule } from './app.module';
+
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
