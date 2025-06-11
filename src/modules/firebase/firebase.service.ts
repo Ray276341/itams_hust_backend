@@ -14,7 +14,7 @@ export class FirebaseService {
   bucket: Bucket;
   constructor() {
     const app = firebase.initializeApp({
-      credential: applicationDefault(),
+      credential: firebase.credential.cert(serviceAccount),
       storageBucket: process.env.FIREBASE_STORAGEBUCKET,
     });
     this.bucket = getStorage(app).bucket();
