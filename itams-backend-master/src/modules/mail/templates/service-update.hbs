@@ -1,0 +1,22 @@
+<p>Hey {{name}},</p>
+
+<p>The service “<strong>{{service_name}}</strong>” was just updated to version
+  <strong>{{service_version}}</strong>.</p>
+
+{{#if outgoingDeps.length}}
+  <h4>Outgoing Dependencies:</h4>
+  <ul>
+    {{#each outgoingDeps}}
+      <li>{{this.name}}: Version {{this.version}}</li>
+    {{/each}}
+  </ul>
+{{/if}}
+
+{{#if incomingDeps.length}}
+  <h4>Incoming Dependencies:</h4>
+  <ul>
+    {{#each incomingDeps}}
+      <li>{{this.name}}: Version {{this.version}}</li>
+    {{/each}}
+  </ul>
+{{/if}}
